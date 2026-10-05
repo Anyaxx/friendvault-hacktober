@@ -1,0 +1,6 @@
+streamlit
+pillow
+pytesseract
+dateparser
+opencv-python
+numpy
