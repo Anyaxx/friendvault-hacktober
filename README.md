@@ -1,23 +1,72 @@
-# FriendVault — local bill & receipt assistant
+# FriendVault
 
-FriendVault is a privacy-first, local-only tool for tracking household bills, recurring reminders, and grocery receipts. It is designed for the Hacktoberfest Weekend Challenge: Build for a Friend.
+<p align="center">
+  <img alt="Hacktoberfest 2026" src="https://img.shields.io/badge/Hacktoberfest-2026-orange" />
+  <img alt="Python 3" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white" />
+  <img alt="Streamlit" src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" />
+  <img alt="Tesseract OCR" src="https://img.shields.io/badge/OCR-Tesseract-5C7CFA" />
+  <img alt="Local-first" src="https://img.shields.io/badge/Privacy-Local%20Only-111827" />
+</p>
 
-The app lets a user upload a receipt or bill photo, run OCR locally, extract key details, generate reminders, and review a monthly summary — all without sending personal financial data to a remote service.
+FriendVault is a privacy-first, local-only bill and receipt tracker built for the Hacktoberfest Weekend Challenge: Build for a Friend.
+
+It helps a real person stay on top of rent, utilities, subscriptions, and the endless stream of paper receipts by scanning them locally, extracting key details, generating reminders, and summarizing what is due and what has been spent.
+
+## Why this project exists
+
+This was built for a friend who needed a simpler way to manage bills without turning everything into a cloud-based finance service or an overwhelming spreadsheet. The goal was to reduce stress, avoid missed payments, and keep personal finance data on the user’s own device.
 
 ## Features
 
 - Upload bill or receipt photos locally
 - OCR extraction for vendor, date, and amount
 - Grocery item extraction from receipts
-- Reminder generation for recurring categories like utilities, rent, and subscriptions
-- Monthly spending summary cards
+- Reminder generation for recurring expenses
+- Monthly spend summaries
 - Saved bill deletion
 - Shopping list tracking
-- Local-only storage in SQLite
+- Local-only SQLite storage
 
-## Why this exists
+## Demo
 
-This project was built for a real person who needed a simpler way to track what was due, what had been paid, and what was still piling up in paper receipts and screenshots.
+Run the app locally:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app/main.py
+```
+
+Then upload a receipt image or bill photo to see the extracted data, generated summary cards, reminders, and shopping list.
+
+## Project structure
+
+- `app/main.py` — Streamlit dashboard and user flows
+- `app/db.py` — local database logic and reminder generation
+- `app/ocr.py` — OCR preprocessing and receipt parsing
+- `requirements.txt` — Python dependencies
+
+## Open-source AI approach
+
+This app is built around open-source local tooling instead of a hosted API:
+
+- Streamlit for the interface
+- Tesseract OCR for local text extraction
+- OpenCV for image preprocessing
+- SQLite for offline storage
+
+This keeps the app working without internet access and keeps a person’s sensitive bill data on their own machine.
+
+## Why open innovation matters
+
+Open innovation matters here because a closed-billing service would require sending private financial data to a remote platform. With open-source tools, the app can run on a laptop, work offline, be customized, and stay under the user’s control.
+
+That makes it more trustworthy, more private, and more useful for a real friend who wants fewer missed bills and less mental load.
+
+## Notes
+
+Everything is stored on the device in the local `data/` folder. No data is sent to external services by default.
 
 ## Quick start
 
@@ -38,14 +87,3 @@ This project was built for a real person who needed a simpler way to track what 
    ```bash
    streamlit run app/main.py
    ```
-
-## Project structure
-
-- `app/main.py` — Streamlit UI and dashboard
-- `app/db.py` — SQLite storage and reminder logic
-- `app/ocr.py` — local OCR and receipt parsing
-- `requirements.txt` — app dependencies
-
-## Notes
-
-Everything is stored on the device in the local data folder. No data is sent to external services by default.
